@@ -1,13 +1,13 @@
 package io.murad.queue.circuler;
 
-public class CirculerQueue {
+public class CircularQueue {
 	// Size of Circular Queue
 	int size = 5;
 	int front;
 	int rear;
 	int items[] = new int[size];
 
-	public CirculerQueue() {
+	public CircularQueue() {
 		front = -1;
 		rear = -1;
 	}
@@ -83,7 +83,7 @@ public class CirculerQueue {
 	}
 
 	public static void main(String[] args) {
-		CirculerQueue cq = new CirculerQueue();
+		CircularQueue cq = new CircularQueue();
 		// Fails because front = -1
 		cq.dequeue();
 
