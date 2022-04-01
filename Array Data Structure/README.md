@@ -17,8 +17,9 @@ In types of arrays, a three-dimensional array is an extension to the two dimensi
 
 ## What Operations Can You Perform on an Array?
 
-- Traversal
-- Insertion
-- Deletion
-- Searching
-- Sorting
+- Traversal− Print all the elements in the array one by one.
+- Insertion− Adds an element at the given index.
+- Deletion− Deletes an element at the given index.
+- Searching− Searches an element in the array using the given       index or the value.
+- Sorting−Sort the array ascending order
+- Update− Updates an element at the given index.
