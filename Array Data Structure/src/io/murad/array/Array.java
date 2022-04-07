@@ -22,12 +22,13 @@ public class Array {
 		return sum;
 	}
 
-	static int findElement(int arr[], int n, int key) {
-		for (int i = 0; i < n; i++)
-			if (arr[i] == key)
-				return i;
-
-		return -1;
+	static void searchElement(int arr[], int n, int key) {
+		for (int i = 0; i < n; i++) {
+			if (arr[i] == key) {
+				System.out.println("The input element found on index: " + i);
+			}
+			;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -45,7 +46,7 @@ public class Array {
 
 		// Inserting an array
 		for (int i = 0; i < arr4.length; i++) {
-			System.out.println("Input number: ");
+			System.out.println("Insert the array: ");
 			arr4[i] = userInput.nextInt();
 		}
 
@@ -53,6 +54,7 @@ public class Array {
 			System.out.println("Traverse Array: " + arr4[i]);
 		}
 
+		Array.searchElement(arr4, arrayLength, 5);
 		List<Integer> arrSum = new ArrayList<Integer>();
 		arrSum.add(0, 1);
 		arrSum.add(1, 2);
