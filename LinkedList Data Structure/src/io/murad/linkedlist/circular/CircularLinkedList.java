@@ -20,7 +20,7 @@ public class CircularLinkedList {
 		// assign last to newNode
 		last = newNode;
 
-		// create link to iteself
+		// create link to itself
 		newNode.next = last;
 
 		return last;
