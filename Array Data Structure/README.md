@@ -25,7 +25,11 @@ In types of arrays, a three-dimensional array is an extension to the two dimensi
 - Update− Updates an element at the given index.
 
 
-# Time Complexity Analysis of Array
+# Time Complexity Analysis of Array By - [Ue Kiao](https://iq.opengenus.org/author/ue/), Phd
+*[Ue Kiao](https://iq.opengenus.org/author/ue/) is a Technical Author and Software Developer* <br>
+*B.Sc in Computer Science at National Taiwan University* <br> 
+*PhD in Algorithms at Tokyo Institute of Technology* <br> 
+*Researcher at TaoBao*
 
 In this article, we have presented the Time Complexity analysis of different operations in Array. It clears several misconceptions such that Time Complexity to access i-th element takes `O(1)` time but in reality, it takes `O(√N)` time. We have presented space complexity of array operations as well.
 
@@ -51,13 +55,7 @@ Similarly, in Column Major, each 1D column is placed sequentially one by one.
 
 Based on this, you can find the memory address of a specific element instantly.
 
-### Time Complexity Analysis of Array By - [Ue Kiao](https://iq.opengenus.org/author/ue/), Phd
-
-[Ue Kiao](https://iq.opengenus.org/author/ue/) is a Technical Author and Software Developer<br>
-B. Sc in Computer Science at National Taiwan University<br> 
-PhD in Algorithms at Tokyo Institute of Technology<br> 
-Researcher at TaoBao
-
+### Time Complexity Analysis of Array
 
 From this [article](https://iq.opengenus.org/why-o1-time-does-not-exist/), we learnt that fetching an element at a specific memory address takes `O(√N)` time where N is the block of memory being read.
 
