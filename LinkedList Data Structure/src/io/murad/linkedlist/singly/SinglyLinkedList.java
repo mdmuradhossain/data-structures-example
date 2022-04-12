@@ -17,6 +17,27 @@ public class SinglyLinkedList {
 	}
 
 	/*
+	 * Method to add a node at the beginning of the list
+	 */
+	public void addNodeAtTheBeginning(int data) {
+		System.out.println("Add a node with data " + data + " in the beginning.");
+		// Create a new node
+		Node newNode = new Node(data);
+
+		// Check if the list is empty
+		if (this.head == null) {
+			// Make the new node as head
+			this.head = newNode;
+		} else {
+			// Point the new node's next to head
+			newNode.next = this.head;
+
+			// Make the new node as head
+			this.head = newNode;
+		}
+	}
+
+	/*
 	 * Method to add a node at the end of the list
 	 */
 	public void addNodeAtTheEnd(int data) {
@@ -35,6 +56,39 @@ public class SinglyLinkedList {
 			}
 			cur.next = newNode;
 		}
+	}
+
+	/*
+	 * Method to add a node at the specified position in the list
+	 */
+	public void add(int position, int data) {
+		System.out.println("Add a node with data " + data + " at the position " + position);
+		// Create a new node
+		Node newNode = new Node(data);
+
+		// Init the cur and prev nodes to the head
+		Node cur = this.head, prev = this.head;
+
+		if (position == 1) {
+			// Point the new node's next to head
+			newNode.next = head;
+			// Make the new node as head
+			this.head = newNode;
+			return;
+		}
+
+		// traverse to the end of the list and check positions moved
+		while (cur.next != null && --position > 0) {
+			// update the prev and cur references
+			prev = cur;
+			cur = cur.next;
+		}
+
+		// update prev to point to new node
+		prev.next = newNode;
+
+		// & new node to point to current node
+		newNode.next = cur;
 	}
 
 	/*
