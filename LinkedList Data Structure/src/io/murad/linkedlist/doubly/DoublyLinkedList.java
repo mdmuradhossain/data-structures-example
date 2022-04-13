@@ -4,14 +4,18 @@ public class DoublyLinkedList {
 
 	// node creation
 	Node head;
-
-	class Node {
+	Node tail;
+	int size = 0;
+	static class Node {
 		int data;
 		Node prev;
 		Node next;
 
 		Node(int d) {
 			data = d;
+		}
+		public void displayData() {
+			System.out.print(" " + data);
 		}
 	}
 
@@ -89,6 +93,30 @@ public class DoublyLinkedList {
 		newNode.prev = temp;
 	}
 
+	 //add a node to the list  
+    public void addNode(int item) {  
+        //Create a new node  
+        Node newNode = new Node(item);  
+   
+        //if list is empty, head and tail points to newNode  
+        if(head == null) {  
+            head = tail = newNode;  
+            //head's previous will be null  
+            head.prev = null;  
+            //tail's next will be null  
+            tail.next = null;  
+        }  
+        else {  
+            //add newNode to the end of list. tail->next set to newNode  
+            tail.next = newNode;  
+            //newNode->previous set to tail  
+            newNode.prev = tail;  
+            //newNode becomes new tail  
+            tail = newNode;  
+            //tail's next point to null  
+            tail.next = null;  
+        }  
+    } 
 	// delete a node from the doubly linked list
 	void deleteNode(Node delNode) {
 
@@ -125,6 +153,112 @@ public class DoublyLinkedList {
 			node = node.next;
 		}
 		System.out.println();
+	}
+	public void deleteFirstNode() {
+		if (head == null) {
+			System.out.println("List is empty");
+		}
+		Node first = head;
+		if (head.next == null) {
+			tail = null;
+		} else {
+			head.next.prev = null;
+		}
+		head = head.next;
+		size--;
+	}
+
+	/**
+     *
+     * @return
+     */
+	public void deleteLastNode() {
+		if (tail == null) {
+			throw new RuntimeException("List is empty");
+		}
+		Node last = tail;
+		if (head.next == null) {
+			head = null;
+		} else {
+			tail.prev.next = null;
+		}
+		tail = tail.prev;
+		size--;
+	}
+
+	/**
+     *
+     * @param index
+     * @return
+     */
+	public void deleteAtIndex(int index) {
+		if (index + 1 >= 0 && index + 1 <= size) {
+			Node current = head;
+			//remove at the start
+			if (index == 0) {
+				deleteFirstNode();
+			}
+			// remove at last
+			else if (index == size - 1) {
+				deleteLastNode();
+			} else {
+				for (int j = 0; j < index && current.next != null; j++) {
+					current = current.next;
+				}
+				current.prev.next = current.next;
+				current.next.prev = current.prev;
+				size--;
+			}
+		} else {
+			System.out.println("Index " + index + " not valid for linked list of size " + size);
+		}
+	}
+
+	/**
+     * Display forward
+     */
+	public void displayFirstToLast() {
+		Node current = head;
+		System.out.print("The doubly linked list is --> ");
+		while (current != null) {
+			current.displayData();
+			current = current.next;
+		}
+		System.out.println("");
+	}
+
+	/**
+     * Display backwards
+     */
+	public void displayLastToFirst() {
+		Node current = tail;
+		System.out.print("The doubly linked list is --> ");
+		while (current != null) {
+			current.displayData();
+			current = current.prev;
+		}
+		System.out.println("");
+	}
+
+	/**
+     * Search the given node in doubly linked list
+     * @param data
+     */
+	public void searchNode(int data) {
+		//Node current will point to head
+		Node current = head;
+		if (head == null) {
+			System.out.println("Doubly linked list is empty");
+			return;
+		}
+		System.out.println("Search node with data " + data + " in doubly linked list");
+		while (current != null) {
+			if (current.data == data) {
+				System.out.println("node with data " + data + " found");
+				break;
+			}
+			current = current.next;
+		}
 	}
 
 	public static void main(String[] args) {
