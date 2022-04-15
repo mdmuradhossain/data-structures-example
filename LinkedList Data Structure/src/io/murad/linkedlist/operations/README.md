@@ -141,10 +141,15 @@ You can delete either from the beginning, end or from a particular position.
 **3. Delete from middle**
 - Traverse to element before the element to be deleted
 - Change next pointers to exclude the node from the chain
+
 `for(int i=2; i< position; i++) {`
+
   `if(temp->next!=NULL) {`
+  
    ` temp = temp->next;`
+   
   `}`
+  
 `}`
 
 `temp->next = temp->next->next;`
@@ -157,14 +162,21 @@ You can search an element on a linked list using a loop using the following step
 - In each iteration, check if the key of the node is equal to item. If it the key matches the item, return `true` otherwise return `false`.
 
 `// Search a node`
+
 `bool searchNode(struct Node** head_ref, int key) {`
+
   `struct Node* current = *head_ref;`
 
   `while (current != NULL) {`
+  
     `if (current->data == key) return true;`
+    
       `current = current->next;`
+      
   `}`
+  
   `return false;`
+  
 `}`
 
 ### Sort Elements of a Linked List
@@ -179,26 +191,45 @@ We will use a simple sorting algorithm, Bubble Sort, to sort the elements of a l
 Check the article on bubble sort for better understanding of its working.
 
 `// Sort the linked list`
+
 `void sortLinkedList(struct Node** head_ref) {`
+
   `struct Node *current = *head_ref, *index = NULL;`
+  
   `int temp;`
 
   `if (head_ref == NULL) {`
+  
    ` return;`
+   
   `} else {`
+  
    ` while (current != NULL) {`
-     ` // index points to the node next to current`
+   
+     `// index points to the node next to current`
+     
       `index = current->next;`
 
   	`while (index != NULL) {`
+  	
         `if (current->data > index->data) {`
-         ` temp = current->data;`
+        
+         `temp = current->data;`
+         
           `current->data = index->data;`
+          
           `index->data = temp;`
+          
     	  `}`
-    	 ` index = index->next;`
-  `	}`
-  	`current = current->next;`
-    `}`
+    	  
+    	 `index = index->next;`
+    	 
   `}`
+  
+  	`current = current->next;`
+  	
+    `}`
+    
+  `}`
+  
 `}`
