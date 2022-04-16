@@ -113,3 +113,354 @@ where,
 
 ### 3. Universal Hashing
 In Universal hashing, the hash function is chosen at random independent of keys.
+
+
+#Hash Tables in Data Structure and Algorithm
+
+![Examples of Hashing](https://miro.medium.com/max/1400/1*J7lzku84LsxaeXpbgqRy5Q.png)
+Hashing is the most important Data Struct that we use every day which is designed to use a special formula to encode the given value with a particular key for faster access of elements. the efficiency of hashing depends on the formula we used. Let's go into detail.
+### INTRODUCTION
+Suppose we want to design a system for storing users and their passwords. And we want to access to be performed efficiently:
+Insert a user name and corresponding password.
+Search a user and change their password.
+Delete a user and corresponding password.
+Think about it. We can use the following data structures to maintain it: array with pair element, Linked List, Binary Tree, Trie, …
+summary of some methods:
+![](https://miro.medium.com/max/1400/1*bjamB7adoJshRANMrn5guA.png)
+Can we do better?
+The above data structures all of these operations can be guaranteed to be in O(Logn) time. So can we perform it with O(1) time? this is why the hash table comes in.
+BUILD HASH FUNCTION
+The simplest method to build Hash function is each key, we can perform sum of each key by add all character and then we can use Modulo for M. M is typically a prime number and it is the size of Hash array. I just suppose in a simple case of password but in real life, we must encode password (this is not the purpose of this article and apply a ton of algorithm for encoding password).
+
+![Examples of sum all characters](https://miro.medium.com/max/1400/1*T7KP2Fd1eezpjOn1kweJrw.png)
+table_size = 7
+table = [0]*table_size
+def hashing(user):
+    sum = 0
+    for char in user:
+        sum += char
+    return sum%table_size
+# Example of USER1
+user = "USER1"
+password = "PASSWORD1"
+table[hashing(user)] = password
+We have many the formula for the Hash function like Robert Sedgewick, Polynomial, Cyclic shift,…
+Robert Sedgewick Hashing:
+def RSHash(key):
+    a = 63689
+    b = 378551
+    hash = 0
+    for i in range(len(key)):
+        hash = hash * a + ord(key[i])
+        a = a * b
+return hash%table_size
+Polynomial Hashing:
+def polynominalRollingHash(key):
+     p = 31
+     m = 1e9+99
+     power_of_p = 1
+     hash_val = 0
+     for s in key:
+        hash_val = (hash_val + (s - 'a' + 1)*power_of_p) % table_size
+        power_of_p = (power_of_p * p) % table_size
+     return hash_val
+Cyclic shift Hashing:
+def cyclicShiftHash(key):
+     hash_val = 0
+     for s in key:
+         hash_val ^= ((hash_val << 5) + s + (hash_val >> 27))
+     return hash_val & 0x7FFFFFFF;
+0x7FFFFFFF is a number in hexadecimal (2,147,483,647 in decimal) that represents the maximum positive value for a 32-bit signed binary integer.
+So, what makes a good hash function?
+The hash value is fully determined by the data being hashed.
+The hash function uses all the input data.
+The hash function “uniformly" distributes the data across the entire set of possible hash values.
+The hash function generates very different hash values for similar strings.
+The above hashing functions may be good at different problems, we have to try many problems to aware of it.
+THE PROBLEMS OF HASHING FUNCTION
+COLLISIONS
+Collision = two keys hashing to the same value.
+Essentially unavoidable
+Birthday problem: how many people will have to enter a room until two have the same birthday?
+With M hash values, expect a collision after sqrt(M/2) insertions
+=> can't avoid collisions unless you have a ridiculous amount of money :)) sorry for a little bit of confusion here, I mean the memory
+COLLISION REVOLUTION
+How to handle Collisions?
+There are mainly two methods to handle collision:
+Separate Chaining.
+Open Addressing.
+Separate Chaining
+The concept of separate chaining involves a technique in which each index key is built with a linked list. This means that the table’s cells have linked lists governed by the same hash function, So, in place of the collision error which occurred in the figure we used in the last section, the cell now contains a linked list containing the string “Bruce Lee” and “Robert Lee” as seen in this new figure. We can see in this figure how the subsequent strings are loaded using the separate chaining technique.
+
+![Linked List](https://miro.medium.com/max/1400/1*VEMtED_SYyKY-f2IAJz81g.png)
+Why use linked list?
+Advantages:
+Easy to implement
+Unlimited capacity
+Disadvantages:
+In the worst case: if the chain becomes long because of too many elements have same value, the search time can become O(n).
+Wastage of space (some space of hash table are never used)
+Uses extra space for linked list
+The below code for Separate Chaining:
+TABLE_SIZE = 1000
+class Node:
+    def __init__(self, key=""):
+        self.key = ""
+        self.next = Node
+    
+class HashTalbe:
+    def __init__(self):
+        self.head = Node
+        self.count = 0
+# In[]: create a new hashTable
+hashTable = []
+# In[]: hashing function
+def hashing(s):
+    hashValue = 1315423911
+    a=5
+    b=2
+    for i in range(len(s)):
+        x = hashValue << a
+        y = hashValue >> b
+        hashValue ^= (x+ord(s[i]) + y) & 0xFFFFFFFF
+    return hashValue & 0xFFFFFFFF
+# In[]: insert a new key into hash table
+def insert(s):
+    index = hashing(s) % TABLE_SIZE
+    newNode = Node(s)
+    if hashTable[index].head == None:
+        hashTable[index].head = newNode
+        hashTable[index].count = 1
+        return
+    newNode.next = hashTable[index].head
+    hashTable[index].head = newNode
+    hashTable[index].count += 1
+# In[]: search a key in hash table
+def search(s):
+    index = hashing(s) % TABLE_SIZE
+    currentNode = hashTable[index].head
+    while currentNode != None:
+        if currentNode.key == s:
+            return True
+        currentNode = currentNode.next
+    return False
+# In[]: delete a key in table
+def deleteKey(s):
+    index = hashing(s) % TABLE_SIZE
+    currentNode = hashTable[index].head
+    prevNode = currentNode
+    while currentNode != None:
+        if currentNode.key == s:
+            if currentNode == hashTable[index].head:
+                hashTable[index].head = hashTable[index].head.next
+            else:
+                prevNode.next = currentNode.next
+            hashTable[index].count -= 1
+            del currentNode
+            return True
+        prevNode = currentNode
+        currentNode = currentNode.next
+Open Addressing
+As the name of it, the concept is instead of create a new linked list to store the key is duplicated, we will move the duplicated key to an empty index. There are 4 mainly way to avoid collision.
+![](https://miro.medium.com/max/1400/1*Cz4tULUMd5vxBP2btP4f9A.png)
+Linear probing
+Binary probing
+Quadratic probing
+Double hashing
+Linear probing: when the key is duplicated, this key is moved to the next empty index with linear search.
+Advantages:
+Allow search all index in Hash table easily.
+Insert function always performs except the array is full.
+Disadvantages:
+Data will be gathered into segments in Hashtable.
+In the worst case, search the empty indexing with O(n) time.
+Implementation:
+TABLE_SIZE = 100
+current_size = 0
+class Node:
+    def __init__(self, key = ""):
+        self.key = key
+        self.flag = 0
+hashTable = [Node()]*TABLE_SIZE
+def JSHash(keys):
+    hashValue = 1315423911
+    a = 5
+    b = 2
+    for s in keys:
+        x = hashValue << a
+        y = hashValue >> b
+        hashValue ^= (x+ord(s)+y)
+    return hashValue & 0x7FFFFFFF
+def insertKey(key):
+    global current_size
+    index = JSHash(key) % TABLE_SIZE
+    if current_size > TABLE_SIZE:
+        return False
+    
+    while hashTable[index].flag:
+        index = (index+1)%TABLE_SIZE
+        
+    hashTable[index].key = key
+    hashTable[index].flag = 1
+    current_size += 1
+    return True
+def searchKey(key):
+    index = JSHash(key) % TABLE_SIZE
+    count = 0
+    if current_size == 0:
+        return -1
+        
+    while hashTable[index].flag != 0 and count <= TABLE_SIZE:
+        if hashTable[index].key == key:
+            if hashTable[index].flag == 1:
+                return index
+            return -1
+        index = (index+1) % TABLE_SIZE
+        count += 1
+    
+    return -1
+Binary probing: use operation XOR to find the empty index.
+Advantages:
+while taking advantage of Linear’s strengths and making quick calculations in practice by using bitwise
+Disadvantages:
+Data is still gathered into different segments.
+Like Linear probing the Binary probing in the worst-case O(n) time.
+Implementation:
+TABLE_SIZE = 100
+current_size = 0
+class Node:
+    def __init__(self, key = ""):
+        self.key = key
+        self.flag = 0
+hashTable = [Node()]*TABLE_SIZE
+def JSHash(keys):
+    hashValue = 1315423911
+    a = 5
+    b = 2
+    for s in keys:
+        x = hashValue << a
+        y = hashValue >> b
+        hashValue ^= (x+ord(s)+y)
+    return hashValue & 0x7FFFFFFF
+def insertKey(key):
+    global current_size
+    index = JSHash(key) % TABLE_SIZE
+    if current_size > TABLE_SIZE:
+        return False
+    
+    for i in range(1, TABLE_SIZE+1):
+        if hashTable[index].flag == 0:
+            hashTable[index].key = key
+            hashTable[index].flag = 1
+            current_size += 1
+            return True
+        index = (index ^ i) % TABLE_SIZE
+    return False
+def searchKey(key):
+    index = JSHash(key) % TABLE_SIZE
+    count = 0
+    if current_size == 0:
+        return -1
+    i = 1
+    while hashTable[index].flag != 0 and count <= TABLE_SIZE:
+        if hashTable[index].key == key:
+            if hashTable[index].flag == 1:
+                return index
+            return -1
+        index = (index ^ 1) % TABLE_SIZE
+        count += 1
+        i += 1
+    
+    return -1
+Quadratic probing: Like Linear probing, the quadratic probing uses the quadratic function to change the index of the duplicated element. Find i-th index smallest such as (index+i*i) mod SIZE is empty then move it to there.
+Advantages:
+Reduce the clustering of data phenomena
+Disadvantages:
+Encountered some case the array still has the empty indexing but it didn’t find.
+2 two keys that have the same process may be will hash at the same index.
+Implementation:
+TABLE_SIZE = 100
+current_size = 0
+class Node:
+    def __init__(self, key = ""):
+        self.key = key
+        self.flag = 0
+hashTable = [Node()]*TABLE_SIZE
+def JSHash(keys):
+    hashValue = 1315423911
+    a = 5
+    b = 2
+    for s in keys:
+        x = hashValue << a
+        y = hashValue >> b
+        hashValue ^= (x+ord(s)+y)
+    return hashValue & 0x7FFFFFFF
+def insertKey(key):
+    global current_size
+    index = JSHash(key) % TABLE_SIZE
+    if current_size >= TABLE_SIZE:
+        return False
+    
+    for i in range(1, TABLE_SIZE+1):
+        if hashTable[index].flag == 0:
+            hashTable[index].key = key
+            hashTable[index].flag = 1
+            current_size += 1
+            return True
+        index = (index + i*i) % TABLE_SIZE
+    return False
+def searchKey(key):
+    index = JSHash(key) % TABLE_SIZE
+    count = 0
+    if current_size == 0:
+        return -1
+    i = 1
+    while hashTable[index].flag != 0 and count <= TABLE_SIZE:
+        if hashTable[index].key == key:
+            if hashTable[index].flag == 1:
+                return index
+            return -1
+        index = (index + i*i) % TABLE_SIZE
+        count += 1
+        i += 1
+    
+    return -1
+Double hashing: When the occurs collision we will use another hashing function. Suppose index_first is the index of the first hashing function, index_second is the index of the second hashing function. and then i is updated by index_first = (index_first + i*index_second) mod SIZE.
+Advantages:
+Not occur the clustering of data phenomena.
+Disadvantages:
+Must use double hashing.
+Like Quadratic probing 2 two keys that have the same process may be will hash at the same index.
+Implementation:
+def insertKey(key):
+    global current_size
+    index = JSHash(key) % TABLE_SIZE
+    inde_second = RSHash(key) % TABLE_SIZE
+    if current_size >= TABLE_SIZE:
+        return False
+    
+    for i in range(1, TABLE_SIZE+1):
+        if hashTable[index].flag == 0:
+            hashTable[index].key = key
+            hashTable[index].flag = 1
+            current_size += 1
+            return True
+        index = (index + i*index_second) % TABLE_SIZE
+    return False
+def searchKey(key):
+    index = JSHash(key) % TABLE_SIZE
+    index_second = RSHash(key) % TABLE_SIZE
+    count = 0
+    if current_size == 0:
+        return -1
+    i = 1
+    while hashTable[index].flag != 0 and count <= TABLE_SIZE:
+        if hashTable[index].key == key:
+            if hashTable[index].flag == 1:
+                return index
+            return -1
+        index = (index + i*index_second) % TABLE_SIZE
+        count += 1
+        i += 1
+    
+    return -1
