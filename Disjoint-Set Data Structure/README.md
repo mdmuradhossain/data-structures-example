@@ -48,3 +48,5 @@ If we do Union `(S3, S1)`, `S3` and `S1` will be merged into one disjoint set, `
 `S3 = {1, 2, 3, 4} and S5 = {5}.`
 
 ![Union–Find Algorithm – Step 3](https://www.techiedelight.com/wp-content/uploads/2016/11/Union-Find-3.png)
+
+[Disjoint Set: More](https://www.javatpoint.com/disjoint-set-data-structure)
