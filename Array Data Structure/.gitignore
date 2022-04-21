@@ -1,5 +1,16 @@
+##############################
+## Eclipse
+##############################
+.settings/
 bin/
-src/bin
-.settings
+tmp/
+.metadata
 .classpath
 .project
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
