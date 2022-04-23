@@ -1,4 +1,4 @@
-package io.murad.binarysearchtree;
+package io.murad.tree.binarysearchtree;
 
 public class BinarySearchTree {
 

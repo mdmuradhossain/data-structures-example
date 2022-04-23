@@ -1,4 +1,4 @@
-package io.murad.avltree;
+package io.murad.tree.avltree;
 
 public class Node {
 

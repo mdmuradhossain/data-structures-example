@@ -1,4 +1,4 @@
-package io.murad.btree;
+package io.murad.tree.btree;
 
 public class BTree {
 	private int T;

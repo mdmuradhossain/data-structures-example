@@ -1,4 +1,4 @@
-package io.murad.binarytree;
+package io.murad.tree.binarytree;
 
 public class Node {
 

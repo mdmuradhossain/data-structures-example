@@ -132,7 +132,9 @@ ii. Else, do left-right rotation.
 ![Balancing the tree with rotation](https://cdn.programiz.com/cdn/farfuture/_DTFoJhzbxIBEo6xGqFvLawAyJhzCY2UwRzfH68hcGE/mtime:1590641444/sites/tutorial2program/files/avl-tree_balnce2.png)
 
 b. If `balanceFactor` < -1, it means the height of the right subtree is greater than that of the left subtree. So, do right rotation or right-left rotation
+
 i. If `newNodeKey` > `rightChildKey` do left rotation.
+
 ii. Else, do right-left rotation
 
 6. The final tree is:
@@ -142,33 +144,48 @@ ii. Else, do right-left rotation
 ### Algorithm to Delete a node
 A node is always deleted as a leaf node. After deleting a node, the balance factors of the nodes get changed. In order to rebalance the balance factor, suitable rotations are performed.
 
-Locate nodeToBeDeleted (recursion is used to find nodeToBeDeleted in the code used below).
-node to be deleted
-Locating the node to be deleted
-There are three cases for deleting a node:
-If nodeToBeDeleted is the leaf node (ie. does not have any child), then remove nodeToBeDeleted.
-If nodeToBeDeleted has one child, then substitute the contents of nodeToBeDeleted with that of the child. Remove the child.
-If nodeToBeDeleted has two children, find the inorder successor w of nodeToBeDeleted (ie. node with a minimum value of key in the right subtree).
-finding the successor
-Finding the successor
-Substitute the contents of nodeToBeDeleted with that of w.
-substitute the node to be deleted
-Substitute the node to be deleted
-Remove the leaf node w.
-remove w
-Remove w
-Update balanceFactor of the nodes.
-update bf
-Update bf
-Rebalance the tree if the balance factor of any of the nodes is not equal to -1, 0 or 1.
-If balanceFactor of currentNode > 1,
-If balanceFactor of leftChild >= 0, do right rotation.
-right-rotate
-Right-rotate for balancing the tree
-Else do left-right rotation.
-If balanceFactor of currentNode < -1,
-If balanceFactor of rightChild <= 0, do left rotation.
-Else do right-left rotation.
-The final tree is:
-avl tree
-Avl tree final
+1. Locate `nodeToBeDeleted` (recursion is used to find `nodeToBeDeleted` in the code used below).
+
+![Locating the node to be deleted](https://cdn.programiz.com/cdn/farfuture/fIOlfxQXQuwR8P1eEBkuj1i22A0BuyurJjeB1m6H7So/mtime:1590642405/sites/tutorial2program/files/avl-tree_nodeToBeDeleted_0.png)
+
+2. There are three cases for deleting a node:
+
+a. If `nodeToBeDeleted` is the leaf node (ie. does not have any child), then remove `nodeToBeDeleted`.
+
+b. If `nodeToBeDeleted` has one child, then substitute the contents of `nodeToBeDeleted` with that of the child. Remove the child.
+
+c. If `nodeToBeDeleted` has two children, find the inorder successor `w` of `nodeToBeDeleted` (ie. node with a minimum value of key in the right subtree).
+
+![Finding the successor](https://cdn.programiz.com/cdn/farfuture/rGgRi5ikeoIfyMY124mYlCKq0KkpgsgtNRKzyo9-zkk/mtime:1590642295/sites/tutorial2program/files/avl-tree_successor_0.png)
+
+i. Substitute the contents of `nodeToBeDeleted` with that of `w`.
+
+![Substitute the node to be deleted](https://cdn.programiz.com/cdn/farfuture/ia6iJp_nIYa-HppuHI8Qy9J-b3CIVF375u4j9ZgqTFs/mtime:1590642336/sites/tutorial2program/files/avl-tree_substitute_0.png)
+
+b. Remove the leaf node `w`.
+
+![Remove w](https://cdn.programiz.com/cdn/farfuture/z-sGX0OjTnFqVIDMlgIg2NhNEX8WMXdBn3zYgHoGcOc/mtime:1590642368/sites/tutorial2program/files/avl-tree_removal_0.png)
+
+3. Update `balanceFactor` of the nodes.
+
+![Update bf](https://cdn.programiz.com/cdn/farfuture/DMAk01g-vB7ieYsXfI5mEakGaKqBfjyy1sEAsyf1srs/mtime:1590642260/sites/tutorial2program/files/avl-tree_upatebf_0.png)
+
+4. Rebalance the tree if the balance factor of any of the nodes is not equal to -1, 0 or 1.
+
+a. If `balanceFactor` of `currentNode` > 1,
+
+i. If `balanceFactor` of `leftChild` >= 0, do right rotation.
+
+![Right-rotate for balancing the tree](https://cdn.programiz.com/cdn/farfuture/f_AwZ2V47wJ6s-aG2FTnrpo0PbJs_kAk5Dr94yE-Dbc/mtime:1590642480/sites/tutorial2program/files/avl-tree_balance_0.png)
+
+ii. Else do left-right rotation.
+
+b. If `balanceFactor` of `currentNode` < -1,
+
+i. If `balanceFactor` of `rightChild` <= 0, do left rotation.
+
+ii. Else do right-left rotation.
+
+5. The final tree is:
+
+![Avl tree final](https://cdn.programiz.com/cdn/farfuture/pEgZOHxHEvMlvh7uhdFR0cezl0wvyvZF57ucZppJyuA/mtime:1588678900/sites/tutorial2program/files/avl-tree-final-tree-1_0_2.png)

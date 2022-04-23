@@ -1,4 +1,4 @@
-package io.murad.bplustree;
+package io.murad.tree.bplustree;
 
 import java.util.ArrayList;
 import java.util.Arrays;

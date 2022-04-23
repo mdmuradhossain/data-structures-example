@@ -1,4 +1,4 @@
-package io.murad.redblacktree;
+package io.murad.tree.redblacktree;
 
 public class Node {
 
