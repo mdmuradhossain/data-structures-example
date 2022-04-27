@@ -23,33 +23,30 @@ The leaves are not connected with each other on a B-tree whereas they are connec
 
 Operations on a B+ tree are faster than on a B-tree.
 
-Searching on a B+ Tree
+## Searching on a B+ Tree
 
-The following steps are followed to search for data in a B+ Tree of order m. Let the data to be searched be k.
+The following steps are followed to search for data in a B+ Tree of order `m`. Let the data to be searched be `k`.
 
-Start from the root node. Compare k with the keys at the root node [k1, k2, k3,......km - 1].
-If k < k1, go to the left child of the root node.
-Else if k == k1, compare k2. If k < k2, k lies between k1 and k2. So, search in the left child of k2.
-If k > k2, go for k3, k4,...km-1 as in steps 2 and 3.
-Repeat the above steps until a leaf node is reached.
-If k exists in the leaf node, return true else return false.
-Searching Example on a B+ Tree
+1. Start from the root node. Compare k with the keys at the root node `[k1, k2, k3,......km - 1]`.
+2. If `k < k1`, go to the left child of the root node.
+3. Else if `k == k1`, compare `k2`. If `k < k2`, `k` lies between `k1` and `k2`. So, search in the left child of k2.
+4. If `k > k2`, go for `k3`, `k4`,...`km-1` as in steps 2 and 3.
+5. Repeat the above steps until a leaf node is reached.
+6. If `k` exists in the leaf node, return true else return false.
+
+## Searching Example on a B+ Tree
+
 Let us search k = 45 on the following B+ tree.
 
-B+ tree
-B+ tree
-Compare k with the root node.
-B+ tree search
-k is not found at the root
-Since k > 25, go to the right child.
-B+ tree search
-Go to right of the root
-Compare k with 35. Since k > 30, compare k with 45.
-B+ tree search
-k not found
-Since k ≥ 45, so go to the right child.
-B+ tree search
-go to the right
-k is found.
-B+ tree search
-k is found
+![B+ tree](https://cdn.programiz.com/sites/tutorial2program/files/search-tree.png)
+
+1. Compare k with the root node.
+![k is not found at the root](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-1.png)
+2. Since k > 25, go to the right child.
+![Go to right of the root](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-2.png)
+3. Compare k with 35. Since k > 30, compare k with 45.
+![k not found](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-3.png)
+4. Since k ≥ 45, so go to the right child.
+![go to the right](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-4.png)
+5. k is found.
+![k is found](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-5.png)
