@@ -1,60 +1,59 @@
-Red-Black Tree
+# Red-Black Tree
 
 Red-Black tree is a self-balancing binary search tree in which each node contains an extra bit for denoting the color of the node, either red or black.
 
 A red-black tree satisfies the following properties:
 
-Red/Black Property: Every node is colored, either red or black.
-Root Property: The root is black.
-Leaf Property: Every leaf (NIL) is black.
-Red Property: If a red node has children then, the children are always black.
-Depth Property: For each node, any simple path from this node to any of its descendant leaf has the same black-depth (the number of black nodes).
+1. **Red/Black Property:** Every node is colored, either red or black.
+2. **Root Property:** The root is black.
+3. **Leaf Property:** Every leaf (NIL) is black.
+4. **Red Property:** If a red node has children then, the children are always black.
+5. **Depth Property:** For each node, any simple path from this node to any of its descendant leaf has the same black-depth (the number of black nodes).
+
 An example of a red-black tree is:
 
-red-black tree
-Red Black Tree
+![Red Black Tree](https://cdn.programiz.com/sites/tutorial2program/files/red-black-tree_0.png)
+
 Each node has the following attributes:
 
-color
-key
-leftChild
-rightChild
-parent (except root node)
-How the red-black tree maintains the property of self-balancing?
+- color
+- key
+- leftChild
+- rightChild
+- parent (except root node)
+
+**How the red-black tree maintains the property of self-balancing?**
 
 The red-black color is meant for balancing the tree.
 
 The limitations put on the node colors ensure that any simple path from the root to a leaf is not more than twice as long as any other such path. It helps in maintaining the self-balancing property of the red-black tree.
 
-Operations on a Red-Black Tree
+## Operations on a Red-Black Tree
 Various operations that can be performed on a red-black tree are:
 
-Rotating the subtrees in a Red-Black Tree
+**Rotating the subtrees in a Red-Black Tree**
 In rotation operation, the positions of the nodes of a subtree are interchanged.
 
 Rotation operation is used for maintaining the properties of a red-black tree when they are violated by other operations such as insertion and deletion.
 
 There are two types of rotations:
 
-Left Rotate
+### Left Rotate
 In left-rotation, the arrangement of the nodes on the right is transformed into the arrangements on the left node.
 
-Algorithm
+**Algorithm**
 
-Let the initial tree be:
-left-rotate
-Initial tree
-If y has a left subtree, assign x as the parent of the left subtree of y.
-left-rotate
-Assign x as the parent of the left subtree of y
-If the parent of x is NULL, make y as the root of the tree.
-Else if x is the left child of p, make y as the left child of p.
-Else assign y as the right child of p.
-left-rotate
-Change the parent of x to that of y
-Make y as the parent of x.
-left-rotate
-Assign y as the parent of x.
+1. Let the initial tree be:
+![Initial tree](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-1_0.png)
+2. If `y` has a left subtree, assign `x` as the parent of the left subtree of `y`.
+![Assign x as the parent of the left subtree of y](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-2_0.png)
+3. If the parent of `x` is `NULL`, make `y` as the root of the tree.
+4. Else if `x` is the left child of `p`, make `y` as the left child of `p`.
+5. Else assign `y` as the right child of `p`.
+![Change the parent of x to that of y](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-3_0.png)
+6. Make `y` as the parent of `x`.
+![Assign y as the parent of x.](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-4_0.png)
+
 Right Rotate
 In right-rotation, the arrangement of the nodes on the left is transformed into the arrangements on the right node.
 
