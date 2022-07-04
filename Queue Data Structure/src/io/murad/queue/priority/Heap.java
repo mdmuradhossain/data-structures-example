@@ -75,10 +75,9 @@ public class Heap {
 		Heap h = new Heap();
 
 		h.insert(array, 3);
-		h.insert(array, 4);
-		h.insert(array, 9);
-		h.insert(array, 5);
-		h.insert(array, 2);
+		h.insert(array, 1);
+		h.insert(array, 10);
+		h.deleteNode(array, size);
 
 		System.out.println("Max-Heap Array: ");
 		h.printArray(array, size);

@@ -1,33 +1,20 @@
 package io.murad.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Array {
 
-	public static int sumArray(List<Integer> arr) {
-		int sum = 0;
-		for (Integer a : arr) {
-			sum = sum + a;
-//		     0 = 0 + 1;
-//		     1 = 1 + 2;
-//		     3 = 3 + 3;
-//		     6 = 6 + 4;
-//		     10 = 10 + 10;
-//		     20 = 20 + 11;
-//		     sum = 31
-		}
-		System.out.println(sum);
-		return sum;
-	}
 
 	static void searchElement(int arr[], int n, int key) {
 		for (int i = 0; i < n; i++) {
 			if (arr[i] == key) {
 				System.out.println("The input element found on index: " + i);
+			}else {
+				System.out.println("The input element not found");
 			}
-			;
 		}
 	}
 
@@ -56,15 +43,12 @@ public class Array {
 
 	// Function to delete an element
 	static int deleteElement(int arr[], int n, int key) {
-		// Find position of element to be
-		// deleted
+		// Find position of element to be deleted
 		int pos = findElement(arr, n, key);
-
 		if (pos == -1) {
 			System.out.println("Element not found");
 			return n;
 		}
-
 		// Deleting element
 		int i;
 		for (i = pos; i < n - 1; i++)
@@ -73,39 +57,53 @@ public class Array {
 		return n - 1;
 	}
 
+	static void sortArray(int arr[],int size) {
+		int temp;
+		for(int i=0; i<size; i++) {
+			for(int j=i+1; j<size; j++) {
+				if(arr[i]>arr[j]) {
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		for(int sortedArr : arr) {
+			System.out.println("Sorted Array: "+ sortedArr);
+		}
+		
+	}
 	public static void main(String[] args) {
 
 		Scanner userInput = new Scanner(System.in);
-
-		int arr[] = new int[] { 1, 3, 4, 7, 8, 9 };
-		int arr2[] = new int[5];
-		int arr3[] = { 2, 7, 4, 5, 3, 1 };
-		int arr4[]; // Declaring an array
+		/* Declaring an array
+	     * int arr1[] = new int[] { 1, 3, 4, 7, 8, 9 };
+		 * int arr2[] = new int[5];
+		 * int arr3[] = { 2, 7, 4, 5, 3, 1 };
+		 */
+		int arr[]; 
+		
 		System.out.println("Insert Array Size: ");
 		int arrayLength = userInput.nextInt();
-
-		arr4 = new int[arrayLength];// Allocating memory to the array
+		
+		// Allocating memory to the array
+		arr = new int[arrayLength];
 
 		// Inserting an array
-		for (int i = 0; i < arr4.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			System.out.println("Insert the array: ");
-			arr4[i] = userInput.nextInt();
+			arr[i] = userInput.nextInt();
 		}
 
-		for (int i = 0; i < arr4.length; i++) {
-			System.out.println("Traverse Array: " + arr4[i]);
+		for (int i = 0; i < arr.length; i++) {
+			System.out.println("Traverse Array: " + arr[i]);
 		}
 
-		Array.searchElement(arr4, arrayLength, 5);
-		List<Integer> arrSum = new ArrayList<Integer>();
-		arrSum.add(0, 1);
-		arrSum.add(1, 2);
-		arrSum.add(2, 3);
-		arrSum.add(3, 4);
-		arrSum.add(4, 10);
-		arrSum.add(5, 11);
-		Array.sumArray(arrSum);
-//		userInput.close();
+		Array.searchElement(arr, arrayLength, 5);
+		
+		Array.sortArray(arr, arrayLength);
+		
+		userInput.close();
 	}
 
 }
