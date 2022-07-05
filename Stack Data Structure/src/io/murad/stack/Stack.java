@@ -1,7 +1,7 @@
 package io.murad.stack;
 
-
 public class Stack {
+
 	private int arr[];
 	private int top;
 	private int capacity;
@@ -16,11 +16,12 @@ public class Stack {
 	// Add Elements into stack
 	public void push(int x) {
 		if (isFull()) {
-			System.out.println("Overflow\nProgram Terminated\n");
+			System.out.println("Stack Overflow\nProgram Terminated\n");
 			System.exit(1);
 		}
-		System.out.println("Inserting " + x);
+		System.out.println("Inserting Element: " + x);
 		arr[++top] = x;
+//		System.out.println(++top);
 	}
 
 	// Remove element from stack
@@ -29,7 +30,20 @@ public class Stack {
 			System.out.println("Stack is Empty");
 			System.exit(1);
 		}
+//		System.out.println(top--);
 		return arr[top--];
+
+	}
+
+	// Utility function to return the top element of the stack
+	public int peek() {
+		if (!isEmpty()) {
+			return arr[top];
+		} else {
+			System.exit(-1);
+		}
+
+		return -1;
 	}
 
 	// Return the size of the stack
@@ -49,21 +63,26 @@ public class Stack {
 
 	public void printStack() {
 		for (int i = 0; i <= top; i++) {
-			System.out.println(arr[i]);
+			System.out.print(arr[i]+ ", ");
 		}
 	}
 
 	public static void main(String[] args) {
 		Stack stack = new Stack(5);
 
-		stack.push(5);
+		stack.push(1);
 		stack.push(2);
 		stack.push(3);
-		stack.push(4);
+	
 
 		stack.pop();
+
 		System.out.println("\nAfter popping out");
 
+//		stack.peek();
+
+		System.out.println("Size of Stack: " + stack.size());
+		System.out.print("Stack: ");
 		stack.printStack();
 
 	}
