@@ -25,10 +25,9 @@ Hence, we will be using the heap data structure to implement the priority queue 
 A comparative analysis of different implementations of priority queue is given below.
 | operations | peek | insert | delete |
 | ---------- | ---- | ------ | ------ |
-| Linked List | `O(1)` | `O(n)` | `O(1)` | 
+| Linked List | `O(1)` | `O(n)` | `O(1)` |
 | Binary Heap | `O(1)` | `O(log n)` | `O(log n)` |
 | Binary Search Tree | `O(1)` | `O(log n)` | `O(log n)` |
-
 
 ## Priority Queue Operations
 
@@ -47,12 +46,12 @@ Inserting an element into a priority queue (max-heap) is done by the following s
 
 `If there is no node,`
 
-  `create a newNode.`
+`create a newNode.`
 
 `else (a node is already present)`
 
-  `insert the newNode at the end (last node from left to right.)`
-  
+`insert the newNode at the end (last node from left to right.)`
+
 `heapify the array`
 
 For Min Heap, the above algorithm is modified so that `parentNode` is always smaller than `newNode`.
@@ -65,16 +64,17 @@ Deleting an element from a priority queue (max-heap) is done as follows:
 - Swap it with the last element.
 - Remove the last element.
 - Heapify the tree.
+
 **Algorithm for deletion of an element in the priority queue (max-heap)**
 
 `If nodeToBeDeleted is the leafNode`
 
-  `remove the node`
+`remove the node`
 
 `Else swap nodeToBeDeleted with the lastLeafNode`
 
-  `remove noteToBeDeleted`
-   
+`remove noteToBeDeleted`
+
 `heapify the array`
 
 For Min Heap, the above algorithm is modified so that the both `childNodes` are smaller than `currentNode`.
