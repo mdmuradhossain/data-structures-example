@@ -2,7 +2,7 @@
 
 A linked list is a linear data structure that includes a series of connected nodes. Here, each node stores the data and the address of the next node. For example,
 
-![Linked List](image.jpg)
+![Linked List](https://cdn.programiz.com/sites/tutorial2program/files/linked-list-concept.png)
 
 You have to start somewhere, so we give the address of the first node a special name called `HEAD`. Also, the last node in the linked list can be identified because its next portion points to `NULL`.
 
@@ -19,9 +19,9 @@ We wrap both the data item and the next node reference in a struct as:
 
 `{`
 
-  `int data;`
+`int data;`
 
-  `struct node *next;`
+`struct node *next;`
 
 `};`
 
@@ -69,7 +69,7 @@ Each struct node has a data item and a pointer to another struct node. Let us cr
 
 In just a few steps, we have created a simple linked list with three nodes.
 
-![Representation of Linked List](image.jpg)
+![Representation of Linked List](https://cdn.programiz.com/sites/tutorial2program/files/linked-list-with-data.png)
 
 The power of a linked list comes from the ability to break the chain and rejoin it. E.g. if you wanted to put an element 4 between 1 and 2, the steps would be:
 
@@ -77,4 +77,24 @@ The power of a linked list comes from the ability to break the chain and rejoin 
 - Add its data value as 4
 - Point its next pointer to the struct node containing 2 as the data value
 - Change the next pointer of "1" to the node we just created.
+
 Doing something similar in an array would have required shifting the positions of all the subsequent elements.
+
+## Linked List Complexity
+
+### Time Complexity
+
+|          | Worst case | Average Case |
+| -------- | ---------- | ------------ |
+| Search   | O(n)       | O(n)         |
+| Insert   | O(1)       | O(1)         |
+| Deletion | O(1)       | O(1)         |
+
+**Space Complexity:** `O(n)`
+
+## Linked List Applications
+
+- Dynamic memory allocation
+- Implemented in stack and queue
+- In undo functionality of softwares
+- Hash tables, Graphs
