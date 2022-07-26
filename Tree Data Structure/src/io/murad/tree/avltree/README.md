@@ -5,6 +5,7 @@ AVL tree is a self-balancing binary search tree in which each node maintains ext
 AVL tree got its name after its inventor Georgy Adelson-Velsky and Landis.
 
 ## Balance Factor
+
 Balance factor of a node in an AVL tree is the difference between the height of the left subtree and that of the right subtree of that node.
 
 Balance Factor = (Height of Left Subtree - Height of Right Subtree) or (Height of Right Subtree - Height of Left Subtree)
@@ -16,24 +17,26 @@ An example of a balanced avl tree is:
 ![Avl tree](https://cdn.programiz.com/sites/tutorial2program/files/avl-tree-final-tree-1_0_2.png)
 
 ### Operations on an AVL tree
+
 Various operations that can be performed on an AVL tree are:
 
 ### Rotating the subtrees in an AVL Tree
+
 In rotation operation, the positions of the nodes of a subtree are interchanged.
 
 There are two types of rotations:
 
 ### Left Rotate
+
 In left-rotation, the arrangement of the nodes on the right is transformed into the arrangements on the left node.
 
 Algorithm
 
 1. Let the initial tree be:
-![left-rotate](https://cdn.programiz.com/sites/tutorial2program/files/avl-tree_leftrotate-1.png)
+   ![left-rotate](https://cdn.programiz.com/sites/tutorial2program/files/avl-tree_leftrotate-1.png)
 
 2. If `y` has a left subtree, assign `x` as the parent of the left subtree of `y`.
-![Assign x as the parent of the left subtree of y](https://cdn.programiz.com/cdn/farfuture/rOar-QIMS2mHWi2sn4MmQOdRpGZhpPMQa7lZr_lsZfA/mtime:1590638929/sites/tutorial2program/files/avl-tree_leftrotate-2.png)
-
+   ![Assign x as the parent of the left subtree of y](https://cdn.programiz.com/cdn/farfuture/rOar-QIMS2mHWi2sn4MmQOdRpGZhpPMQa7lZr_lsZfA/mtime:1590638929/sites/tutorial2program/files/avl-tree_leftrotate-2.png)
 
 3. If the parent of `x` is `NULL`, make `y` as the root of the tree.
 4. Else if `x` is the left child of `p`, make y as the left child of `p`.
@@ -46,6 +49,7 @@ Algorithm
 ![Assign y as the parent of x.](https://cdn.programiz.com/cdn/farfuture/O9aADWiuEklv2f5McEZmst1tlFIWiuXUMhAnFgPd1uA/mtime:1590638939/sites/tutorial2program/files/avl-tree_leftrotate-4.png)
 
 ### Right Rotate
+
 In left-rotation, the arrangement of the nodes on the left is transformed into the arrangements on the right node.
 
 1. Let the initial tree be:
@@ -57,7 +61,7 @@ In left-rotation, the arrangement of the nodes on the left is transformed into t
 ![Assign y as the parent of the right subtree of x](https://cdn.programiz.com/cdn/farfuture/tUD9xPE1yKsjUD7GrKeHS5-bvbbpPZRj-QUiVLBiAVo/mtime:1590638951/sites/tutorial2program/files/avl-tree_rightrotate-2.png)
 
 3. If the parent of `y` is `NULL`, make `x` as the root of the tree.
-3. Else if `y` is the right child of its parent `p`, make `x` as the right child of `p`.
+4. Else if `y` is the right child of its parent `p`, make `x` as the right child of `p`.
 5. Else assign `x` as the left child of `p`.
 
 ![Assign the parent of y as the parent of x.](https://cdn.programiz.com/cdn/farfuture/AeeJj9zzvQCCkBVeGi0RQ64uHDlGlRTCRJhVRYTJHgc/mtime:1590638957/sites/tutorial2program/files/avl-tree_rightrotate-3.png)
@@ -67,6 +71,7 @@ In left-rotation, the arrangement of the nodes on the left is transformed into t
 ![Assign x as the parent of y](https://cdn.programiz.com/cdn/farfuture/yr1WZ-vC3rZklwZ-zs9Ox0gKOrvniclffrU9zd96coE/mtime:1590638963/sites/tutorial2program/files/avl-tree_rightrotate-4.png)
 
 ### Left-Right and Right-Left Rotate
+
 In left-right rotation, the arrangements are first shifted to the left and then to the right.
 
 1. Do left rotation on x-y.
@@ -88,6 +93,7 @@ In right-left rotation, the arrangements are first shifted to the right and then
 ![Left rotate z-y](https://cdn.programiz.com/cdn/farfuture/MHtUIZ6EqUmgcC3exARGsdRiOFmENzCH-i_solZWi1g/mtime:1590639315/sites/tutorial2program/files/avl-tree-rightleft-rotate-2.png)
 
 ### Algorithm to insert a newNode
+
 A `newNode` is always inserted as a leaf node with balance factor equal to 0.
 
 1. Let the initial tree be:
@@ -100,24 +106,22 @@ Let the node to be inserted be:
 
 2. Go to the appropriate leaf node to insert a `newNode` using the following recursive steps. Compare `newKey` with `rootKey` of the current tree.
 
-  a. If `newKey` < `rootKey`, call insertion algorithm on the left subtree of the current node until the leaf node is reached.
-  
-  b. Else if `newKey` > `rootKey`, call insertion algorithm on the right subtree of current node until the leaf node is reached.
-  
-  c. Else, return `leafNode`.
-![Finding the location to insert newNode](https://cdn.programiz.com/cdn/farfuture/FpHam25V20lbxh3NAwAnSAla2NbWOj9rPI6bFDrPUbo/mtime:1590641542/sites/tutorial2program/files/avl-tree_find-position.png)
+a. If `newKey` < `rootKey`, call insertion algorithm on the left subtree of the current node until the leaf node is reached.
 
+b. Else if `newKey` > `rootKey`, call insertion algorithm on the right subtree of current node until the leaf node is reached.
+
+c. Else, return `leafNode`.
+![Finding the location to insert newNode](https://cdn.programiz.com/cdn/farfuture/FpHam25V20lbxh3NAwAnSAla2NbWOj9rPI6bFDrPUbo/mtime:1590641542/sites/tutorial2program/files/avl-tree_find-position.png)
 
 3. Compare `leafKey` obtained from the above steps with `newKey`:
 
-  a. If `newKey` < `leafKey`, make newNode as the `leftChild` of `leafNode`.
-  
-  b. Else, make `newNode` as rightChild of `leafNode`.
+a. If `newKey` < `leafKey`, make newNode as the `leftChild` of `leafNode`.
+
+b. Else, make `newNode` as rightChild of `leafNode`.
 
 ![Inserting the new node](https://cdn.programiz.com/cdn/farfuture/cqWklRHIE-bR-CK0vOfdr5ml6hXURz-5YhLxpQT8bIM/mtime:1590641621/sites/tutorial2program/files/avl-tree_insert.png)
 
 4. Update `balanceFactor` of the nodes.
-
 
 ![Updating the balance factor after insertion](https://cdn.programiz.com/cdn/farfuture/6duidjDetnH-DT3WdMw29n1wgG76GIJ_yIevbCSdsrY/mtime:1590641705/sites/tutorial2program/files/avl-tree_update-bf.png)
 
@@ -142,6 +146,7 @@ ii. Else, do right-left rotation
 ![Final balanced tree](https://cdn.programiz.com/cdn/farfuture/tcEU8kqtoLVPZaZPsKGMyctiKuRsDRfcJq0NRUHHorE/mtime:1590641505/sites/tutorial2program/files/avl-tree_final-tree.png)
 
 ### Algorithm to Delete a node
+
 A node is always deleted as a leaf node. After deleting a node, the balance factors of the nodes get changed. In order to rebalance the balance factor, suitable rotations are performed.
 
 1. Locate `nodeToBeDeleted` (recursion is used to find `nodeToBeDeleted` in the code used below).
@@ -189,3 +194,14 @@ ii. Else do right-left rotation.
 5. The final tree is:
 
 ![Avl tree final](https://cdn.programiz.com/cdn/farfuture/pEgZOHxHEvMlvh7uhdFR0cezl0wvyvZF57ucZppJyuA/mtime:1588678900/sites/tutorial2program/files/avl-tree-final-tree-1_0_2.png)
+
+## Complexities of Different Operations on an AVL Tree
+
+| Insertion | Deletion | Search   |
+| --------- | -------- | -------- |
+| O(log n)  | O(log n) | O(log n) |
+
+## AVL Tree Applications
+
+- For indexing large records in databases
+- For searching in large databases
