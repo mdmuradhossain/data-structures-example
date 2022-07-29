@@ -13,7 +13,7 @@ The properties that separate a binary search tree from a regular binary tree is
 
 ![bst](https://cdn.programiz.com/sites/tutorial2program/files/bst-vs-not-bst.png)
 
->*A tree having a right subtree with one value smaller than the root is shown to demonstrate that it is not a valid binary search tree*
+> _A tree having a right subtree with one value smaller than the root is shown to demonstrate that it is not a valid binary search tree_
 
 The binary tree on the right isn't a binary search tree because the right subtree of the node "3" contains a value smaller than it.
 
@@ -27,35 +27,40 @@ If the value is below the root, we can say for sure that the value is not in the
 
 **Algorithm:**
 
-If root == NULL 
-    return NULL;
-If number == root->data 
-    return root->data;
-If number < root->data 
-    return search(root->left)
-If number > root->data 
-    return search(root->right)
-    
+If root == NULL
+return NULL;
+If number == root->data
+return root->data;
+If number < root->data
+return search(root->left)
+If number > root->data
+return search(root->right)
+
 Let us try to visualize this with a diagram.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-search-1.png)
->*4 is not found so, traverse through the left subtree of 8*
+
+> _4 is not found so, traverse through the left subtree of 8_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-search-2.png)
->*4 is not found so, traverse through the right subtree of 3*
+
+> _4 is not found so, traverse through the right subtree of 3_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-search-3.png)
->*4 is not found so, traverse through the left subtree of 6*
+
+> _4 is not found so, traverse through the left subtree of 6_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-search-1.png)
->*4 is found*
+
+> _4 is found_
 
 If the value is found, we return the value so that it gets propagated in each recursion step as shown in the image below.
 
-If you might have noticed, we have called return search(struct node*) four times. When we return either the new node or NULL, the value gets returned again and again until search(root) returns the final result.
+If you might have noticed, we have called return search(struct node\*) four times. When we return either the new node or NULL, the value gets returned again and again until search(root) returns the final result.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-search-5.png)
->*if the value is found in any of the subtrees, it is propagated up so that in the end it is returned, otherwise null is returned*
+
+> _if the value is found in any of the subtrees, it is propagated up so that in the end it is returned, otherwise null is returned_
 
 If the value is not found, we eventually reach the left or right child of a leaf node which is NULL and it gets propagated and returned.
 
@@ -67,64 +72,77 @@ We keep going to either right subtree or left subtree depending on the value and
 
 **Algorithm:**
 
-If node == NULL 
-    return createNode(data)
+If node == NULL
+return createNode(data)
 if (data < node->data)
-    node->left  = insert(node->left, data);
+node->left = insert(node->left, data);
 else if (data > node->data)
-    node->right = insert(node->right, data);  
+node->right = insert(node->right, data);  
 return node;
 
 The algorithm isn't as simple as it looks. Let's try to visualize how we add a number to an existing BST.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-1.png)
->*4<8 so, transverse through the left child of 8*
+
+> _4<8 so, transverse through the left child of 8_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-2.png)
->*4>3 so, transverse through the right child of 8*
+
+> _4>3 so, transverse through the right child of 8_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-3.png)
->*4<6 so, transverse through the left child of 6*
+
+> _4<6 so, transverse through the left child of 6_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-4.png)
->*Insert 4 as a left child of 6*
+
+> _Insert 4 as a left child of 6_
 
 We have attached the node but we still have to exit from the function without doing any damage to the rest of the tree. This is where the return node; at the end comes in handy. In the case of `NULL`, the newly created node is returned and attached to the parent node, otherwise the same node is returned without any change as we go up until we return to the root.
 
 This makes sure that as we move back up the tree, the other node connections aren't changed.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-5.png)
->*Image showing the importance of returning the root element at the end so that the elements don't lose their position during the upward recursion step.*
+
+> _Image showing the importance of returning the root element at the end so that the elements don't lose their position during the upward recursion step._
 
 ## Deletion Operation
 
 There are three cases for deleting a node from a binary search tree.
 
 ### Case I
+
 In the first case, the node to be deleted is the leaf node. In such a case, simply delete the node from the tree.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-1.png)
->*4 is to be deleted*
+
+> _4 is to be deleted_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-2.png)
->*Delete the node*
+
+> _Delete the node_
 
 ### Case II
+
 In the second case, the node to be deleted lies has a single child node. In such a case follow the steps below:
 
 1. Replace that node with its child node.
 2. Remove the child node from its original position.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-3.png)
->*6 is to be deleted*
+
+> _6 is to be deleted_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-4.png)
->*copy the value of its child to the node and delete the child*
+
+> _copy the value of its child to the node and delete the child_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-5.png)
->*Final tree*
+
+> _Final tree_
 
 ### Case III
+
 In the third case, the node to be deleted has two children. In such a case follow the steps below:
 
 1. Get the inorder successor of that node.
@@ -132,13 +150,39 @@ In the third case, the node to be deleted has two children. In such a case follo
 3. Remove the inorder successor from its original position.
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-6.png)
->*3 is to be deleted*
+
+> _3 is to be deleted_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-6.png)
->*Copy the value of the inorder successor (4) to the node*
+
+> _Copy the value of the inorder successor (4) to the node_
 
 ![](https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-8.png)
->*delete the inorder successor*
+
+> _delete the inorder successor_
+
+## Binary Search Tree Complexities
+
+###Time Complexity
+
+| Operation | Best Case Complexity | Average Case Complexity | Worst Case Complexity |
+| --------- | -------------------- | ----------------------- | --------------------- |
+| Search    | O(log n)             | O(log n)                | O(n)                  |
+| Insertion | O(log n)             | O(log n)                | O(n)                  |
+| Deletion  | O(log n)             | O(log n)                | O(n)                  |
+
+Here, n is the number of nodes in the tree.
+
+### Space Complexity
+
+The space complexity for all the operations is `O(n)`.
+
+### Binary Search Tree Applications
+
+- In multilevel indexing in the database
+- For dynamic sorting
+- For managing virtual memory areas in Unix kernel
 
 ## Reference
+
 [BST](https://www.freecodecamp.org/news/data-structures-101-binary-search-tree-398267b6bff0/)
