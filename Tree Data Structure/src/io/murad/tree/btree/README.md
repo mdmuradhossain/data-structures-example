@@ -31,31 +31,50 @@ However, B-tree can store many keys in a single node and can have multiple child
 7. If `n ≥ 1`, then for any n-key B-tree of height `h` and minimum degree `t ≥ 2`, `h ≥ logt (n+1)/2`.
 
 ## Operations on a B-tree
+
 ### Searching an element in a B-tree
 
 Searching for an element in a B-tree is the generalized form of searching an element in a Binary Search Tree. The following steps are followed.
 
 1. Starting from the root node, compare k with the first key of the node.
-If `k = the first key of the node`, return the node and the index.
+   If `k = the first key of the node`, return the node and the index.
 2. If `k.leaf = true`, return `NULL` (i.e. not found).
 3. If `k < the first key of the root node`, search the left child of this key recursively.
 
 4. If there is more than one key in the current node and `k > the first key`, compare k with the next key in the node.
-If `k < next key`, search the left child of this key (ie. k lies in between the first and the second keys).
-Else, search the right child of the key.
+   If `k < next key`, search the left child of this key (ie. k lies in between the first and the second keys).
+   Else, search the right child of the key.
 5. Repeat steps 1 to 4 until the leaf is reached.
 
 ## Searching Example
 
 1. Let us search key `k = 17` in the tree below of degree 3.
-![B-tree](https://cdn.programiz.com/sites/tutorial2program/files/search-1.png)
+   ![B-tree](https://cdn.programiz.com/sites/tutorial2program/files/search-1.png)
 2. `k` is not found in the root so, compare it with the root key.
-![k is not found on the root node](https://cdn.programiz.com/sites/tutorial2program/files/search-2.png)
+   ![k is not found on the root node](https://cdn.programiz.com/sites/tutorial2program/files/search-2.png)
 3. Since `k > 11`, go to the right child of the root node.
-![Go to the right subtree](https://cdn.programiz.com/sites/tutorial2program/files/search-3.png)
+   ![Go to the right subtree](https://cdn.programiz.com/sites/tutorial2program/files/search-3.png)
 4. Compare k with 16. Since `k > 16`, compare k with the next key 18.
-![Compare with the keys from left to right](https://cdn.programiz.com/sites/tutorial2program/files/search-4.png)
+   ![Compare with the keys from left to right](https://cdn.programiz.com/sites/tutorial2program/files/search-4.png)
 5. Since `k < 18`, k lies between 16 and 18. Search in the right child of 16 or the left child of 18.
-![k lies in between 16 and 18](https://cdn.programiz.com/sites/tutorial2program/files/search-5.png)
+   ![k lies in between 16 and 18](https://cdn.programiz.com/sites/tutorial2program/files/search-5.png)
 6. k is found.
-![k is found](https://cdn.programiz.com/sites/tutorial2program/files/search-6.png)
+   ![k is found](https://cdn.programiz.com/sites/tutorial2program/files/search-6.png)
+
+## Searching Complexity on B Tree
+
+### Worst case Time complexity: Θ(log n)
+
+### Average case Time complexity: Θ(log n)
+
+### Best case Time complexity: Θ(log n)
+
+### Average case Space complexity: Θ(n)
+
+### Worst case Space complexity: Θ(n)
+
+## B Tree Applications
+
+- databases and file systems
+- to store blocks of data (secondary storage media)
+- multilevel indexing
