@@ -7,6 +7,7 @@ An important concept to be understood before learning B+ tree is multilevel inde
 ![Multilevel Indexing using B+ tree](https://cdn.programiz.com/sites/tutorial2program/files/multilevel-indexing.png)
 
 ## Properties of a B+ Tree
+
 1. All leaves are at the same level.
 2. The root has at least two children.
 3. Each node except root can have a maximum of `m` children and at least `m/2` children.
@@ -41,12 +42,26 @@ Let us search k = 45 on the following B+ tree.
 ![B+ tree](https://cdn.programiz.com/sites/tutorial2program/files/search-tree.png)
 
 1. Compare k with the root node.
-![k is not found at the root](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-1.png)
+   ![k is not found at the root](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-1.png)
 2. Since k > 25, go to the right child.
-![Go to right of the root](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-2.png)
+   ![Go to right of the root](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-2.png)
 3. Compare k with 35. Since k > 30, compare k with 45.
-![k not found](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-3.png)
+   ![k not found](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-3.png)
 4. Since k ≥ 45, so go to the right child.
-![go to the right](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-4.png)
+   ![go to the right](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-4.png)
 5. k is found.
-![k is found](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-5.png)
+   ![k is found](https://cdn.programiz.com/sites/tutorial2program/files/B+tree-5.png)
+
+## Search Complexity
+
+### Time Complexity
+
+If linear search is implemented inside a node, then total complexity is `Θ(logt n)`.
+
+If binary search is used, then total complexity is `Θ(log2t.logt n)`.
+
+## B+ Tree Applications
+
+- Multilevel Indexing
+- Faster operations on the tree (insertion, deletion, search)
+- Database indexing
