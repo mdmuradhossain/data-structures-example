@@ -29,6 +29,7 @@ The red-black color is meant for balancing the tree.
 The limitations put on the node colors ensure that any simple path from the root to a leaf is not more than twice as long as any other such path. It helps in maintaining the self-balancing property of the red-black tree.
 
 ## Operations on a Red-Black Tree
+
 Various operations that can be performed on a red-black tree are:
 
 **Rotating the subtrees in a Red-Black Tree**
@@ -39,20 +40,21 @@ Rotation operation is used for maintaining the properties of a red-black tree wh
 There are two types of rotations:
 
 ### Left Rotate
+
 In left-rotation, the arrangement of the nodes on the right is transformed into the arrangements on the left node.
 
 **Algorithm**
 
 1. Let the initial tree be:
-![Initial tree](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-1_0.png)
+   ![Initial tree](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-1_0.png)
 2. If `y` has a left subtree, assign `x` as the parent of the left subtree of `y`.
-![Assign x as the parent of the left subtree of y](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-2_0.png)
+   ![Assign x as the parent of the left subtree of y](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-2_0.png)
 3. If the parent of `x` is `NULL`, make `y` as the root of the tree.
 4. Else if `x` is the left child of `p`, make `y` as the left child of `p`.
 5. Else assign `y` as the right child of `p`.
-![Change the parent of x to that of y](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-3_0.png)
+   ![Change the parent of x to that of y](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-3_0.png)
 6. Make `y` as the parent of `x`.
-![Assign y as the parent of x.](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-4_0.png)
+   ![Assign y as the parent of x.](https://cdn.programiz.com/sites/tutorial2program/files/leftrotate-4_0.png)
 
 Right Rotate
 In right-rotation, the arrangement of the nodes on the left is transformed into the arrangements on the right node.
@@ -198,3 +200,10 @@ Left-Rotate the parent of x.
 Set x as the root of the tree.
 Else the same as above with right changed to left and vice versa.
 Set the color of x as BLACK.
+
+## Red-Black Tree Applications
+
+- To implement finite maps
+- To implement Java packages: java.util.TreeMap and java.util.TreeSet
+- To implement Standard Template Libraries (STL) in C++: multiset, map, multimap
+- In Linux Kernel
