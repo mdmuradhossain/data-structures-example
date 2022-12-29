@@ -1,1 +1,8 @@
-/.metadata/
+.settings/
+.metadata/
+.idea/
+
+bin/
+
+.project
+.classpath
