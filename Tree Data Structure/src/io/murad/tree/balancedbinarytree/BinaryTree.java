@@ -1,48 +1,44 @@
 package io.murad.tree.balancedbinarytree;
 
 public class BinaryTree {
+    Node root;
 
-	Node root;
+    // Check height balance
+    boolean checkHeightBalance(Node root, Height height) {
+        // Check for emptiness
+        if (root == null) {
+            height.height = 0;
+            return true;
+        }
 
-	// Check height balance
-	boolean checkHeightBalance(Node root, Height height) {
+        Height leftHeighteight = new Height(), rightHeighteight = new Height();
+        boolean l = checkHeightBalance(root.left, leftHeighteight);
+        boolean r = checkHeightBalance(root.right, rightHeighteight);
+        int leftHeight = leftHeighteight.height, rightHeight = rightHeighteight.height;
 
-		// Check for emptiness
-		if (root == null) {
-			height.height = 0;
-			return true;
-		}
+        height.height = (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
 
-		Height leftHeighteight = new Height(), rightHeighteight = new Height();
-		boolean l = checkHeightBalance(root.left, leftHeighteight);
-		boolean r = checkHeightBalance(root.right, rightHeighteight);
-		int leftHeight = leftHeighteight.height, rightHeight = rightHeighteight.height;
+        if ((leftHeight - rightHeight >= 2) || (rightHeight - leftHeight >= 2)) {
+            return false;
+        } else {
+            return l && r;
+        }
+    }
 
-		height.height = (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+    public static void main(String[] args) {
+        Height height = new Height();
 
-		if ((leftHeight - rightHeight >= 2) || (rightHeight - leftHeight >= 2)) {
-			return false;
-		} else {
-			return l && r;
-		}
-	}
+        BinaryTree tree = new BinaryTree();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
 
-	public static void main(String[] args) {
-		Height height = new Height();
-
-		BinaryTree tree = new BinaryTree();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
-		tree.root.left.right = new Node(5);
-
-		if (tree.checkHeightBalance(tree.root, height)) {
-			System.out.println("The tree is balanced");
-		} else {
-			System.out.println("The tree is not balanced");
-		}
-
-	}
-
+        if (tree.checkHeightBalance(tree.root, height)) {
+            System.out.println("The tree is balanced");
+        } else {
+            System.out.println("The tree is not balanced");
+        }
+    }
 }

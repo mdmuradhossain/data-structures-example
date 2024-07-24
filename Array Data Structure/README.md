@@ -90,5 +90,3 @@ The Space Complexity of the above array operations is `O(1)`.
 This is because we do not need extra space beyond a fixed number of variables.
 
 For some operations, you may need extra space of the order of `O(N)`. For example, sorting an array using a sorting algorithm that is not in-place.
-
-With this article at OpenGenus, you have the perfect idea of the Time Complexity of Array.  

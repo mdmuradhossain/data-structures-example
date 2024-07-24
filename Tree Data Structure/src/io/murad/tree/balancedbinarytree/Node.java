@@ -1,7 +1,6 @@
 package io.murad.tree.balancedbinarytree;
 
 public class Node {
-
 	int data;
 	Node left, right;
 	
